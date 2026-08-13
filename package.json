@@ -1,17 +1,21 @@
 {
-  "name": "mattpocock-skills",
+  "name": "deslop-pocock",
   "version": "1.2.3",
   "private": true,
-  "description": "Matt Pocock's agent skills for real engineering",
+  "description": "Deslop mirror of Matt Pocock's agent skills. Tracks upstream main; em dashes replaced.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattpocock/skills"
+    "url": "https://github.com/designxdevelop/deslop-pocock"
   },
   "license": "MIT",
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version && node scripts/sync-plugin-version.mjs",
-    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check"
+    "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
+    "deslop": "node deslop/apply.mjs",
+    "sync": "node deslop/sync.mjs",
+    "publish": "node deslop/publish.mjs",
+    "test": "node --test deslop/*.test.mjs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",

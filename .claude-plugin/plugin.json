@@ -1,13 +1,13 @@
 {
-  "name": "mattpocock-skills",
+  "name": "deslop-pocock",
   "version": "1.2.3",
-  "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
+  "description": "Deslop mirror of Matt Pocock's agent skills: grilling, spec/ticket flows, TDD, code review, domain modelling and more. Em dashes replaced with ordinary punctuation.",
   "author": {
     "name": "Matt Pocock",
     "url": "https://www.aihero.dev"
   },
   "homepage": "https://www.aihero.dev/s/skills-newsletter",
-  "repository": "https://github.com/mattpocock/skills",
+  "repository": "https://github.com/designxdevelop/deslop-pocock",
   "license": "MIT",
   "keywords": [
     "engineering",
@@ -16,7 +16,9 @@
     "code-review",
     "grilling",
     "domain-modeling",
-    "productivity"
+    "productivity",
+    "deslop",
+    "fork"
   ],
   "skills": [
     "./skills/engineering/ask-matt",

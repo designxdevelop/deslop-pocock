@@ -1,0 +1,7 @@
+This repository is a derivative of https://github.com/mattpocock/skills
+(MIT License, Copyright (c) 2026 Matt Pocock).
+
+Modifications by Design x Develop:
+- Replace em dashes with ordinary punctuation
+- Retarget install and plugin metadata to designxdevelop/deslop-pocock
+- Auto-sync from upstream main and publish matching GitHub releases

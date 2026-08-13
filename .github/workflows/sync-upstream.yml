@@ -1,0 +1,61 @@
+name: Sync upstream
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Re-run even if upstream SHA is unchanged
+        type: boolean
+        default: false
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch upstream
+        run: |
+          git remote get-url upstream >/dev/null 2>&1 || git remote add upstream https://github.com/mattpocock/skills.git
+          git fetch upstream main --tags
+
+      - name: Sync and deslop
+        env:
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+        run: node deslop/sync.mjs
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          VERSION=$(node -p "require('./package.json').version")
+          SHA=$(node -p "require('./deslop/upstream.json').sha.slice(0,7)")
+          git commit -m "sync: mattpocock/skills@${SHA} (v${VERSION})"
+          git push
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node deslop/publish.mjs
