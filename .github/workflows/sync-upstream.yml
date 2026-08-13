@@ -34,7 +34,7 @@ jobs:
       - name: Fetch upstream
         run: |
           git remote get-url upstream >/dev/null 2>&1 || git remote add upstream https://github.com/mattpocock/skills.git
-          git fetch upstream main --tags
+          git fetch upstream main
 
       - name: Sync and deslop
         env:

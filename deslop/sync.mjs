@@ -27,7 +27,7 @@ export function syncFromUpstream({
   force = process.env.FORCE === "true" || process.argv.includes("--force"),
 } = {}) {
   ensureUpstreamRemote(root);
-  execSync("git fetch upstream main --tags", { cwd: root, stdio: "inherit" });
+  execSync("git fetch upstream main", { cwd: root, stdio: "inherit" });
   const sha = git(root, "rev-parse upstream/main").trim();
   const previous = readState();
   if (!force && previous?.sha === sha) {

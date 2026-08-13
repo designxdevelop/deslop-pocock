@@ -32,7 +32,7 @@ export function publishRelease({ root = ROOT } = {}) {
   ].join("\n");
 
   execSync(
-    `gh release create "${tag}" --title "${tag}" --notes ${JSON.stringify(notes)}`,
+    `gh release create "${tag}" --repo "${FORK_REPO}" --target main --title "${tag}" --notes ${JSON.stringify(notes)}`,
     { cwd: root, stdio: "inherit" },
   );
   console.log(`publish: created ${tag} from ${UPSTREAM_REPO}@${sha}`);
@@ -41,7 +41,7 @@ export function publishRelease({ root = ROOT } = {}) {
 
 function releaseExists(tag, root) {
   try {
-    execSync(`gh release view "${tag}"`, {
+    execSync(`gh release view "${tag}" --repo "${FORK_REPO}"`, {
       cwd: root,
       stdio: "pipe",
     });
