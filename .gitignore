@@ -1,1 +1,4 @@
 node_modules
+.agents/skills/
+skills-lock.json
+.skills.json

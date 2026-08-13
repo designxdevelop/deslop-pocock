@@ -5,6 +5,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { replaceEmDashes } from "./emdash.mjs";
 import {
+  rewriteGitignore,
   rewriteIdentityText,
   rewriteMarketplaceJson,
   rewritePackageJson,
@@ -45,6 +46,8 @@ export function transformFile(relPath, original) {
       return rewriteReadme(deslopped);
     case "package.json":
       return rewritePackageJson(deslopped);
+    case ".gitignore":
+      return rewriteGitignore(deslopped);
     case ".claude-plugin/plugin.json":
       return rewritePluginJson(deslopped);
     case ".claude-plugin/marketplace.json":

@@ -72,6 +72,20 @@ export function rewritePluginJson(source) {
   return `${JSON.stringify(plugin, null, 2)}\n`;
 }
 
+export function rewriteGitignore(source) {
+  const extra = [".agents/skills/", "skills-lock.json", ".skills.json"];
+  const lines = rewriteIdentityText(source).split("\n");
+  while (lines.length > 0 && lines[lines.length - 1] === "") {
+    lines.pop();
+  }
+  for (const line of extra) {
+    if (!lines.includes(line)) {
+      lines.push(line);
+    }
+  }
+  return `${lines.join("\n")}\n`;
+}
+
 export function rewriteMarketplaceJson(source) {
   const marketplace = JSON.parse(source);
   marketplace.name = MARKETPLACE_NAME;

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   FORK_REPO,
+  rewriteGitignore,
   rewriteIdentityText,
   rewriteMarketplaceJson,
   rewritePackageJson,
@@ -72,4 +73,12 @@ test("injects a README banner that still credits upstream", () => {
   assert.match(out, /\*\*Deslop fork\*\*/);
   assert.match(out, /github\.com\/mattpocock\/skills/);
   assert.equal(rewriteReadme(out), out);
+});
+
+test("appends local install ignores to gitignore", () => {
+  const out = rewriteGitignore("node_modules\n");
+  assert.match(out, /node_modules/);
+  assert.match(out, /\.agents\/skills\//);
+  assert.match(out, /skills-lock\.json/);
+  assert.equal(rewriteGitignore(out), out);
 });
