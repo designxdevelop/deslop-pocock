@@ -4,9 +4,9 @@
 // Each package under the packages root is a DEEP MODULE: a lot of behaviour
 // behind a small interface. A package's PUBLIC SURFACE is its ENTRY POINTS:
 // the files at the package root. Implementation lives in SUBFOLDERS and is
-// private, by convention `lib/` for implementation and `tests/` for tests,
-// though any subfolder is private. A package may expose several small entry
-// points (index.ts, client.ts, server.ts, …): prefer that over one giant
+// private (by convention `lib/` for implementation and `tests/` for tests,
+// though any subfolder is private). A package may expose several small entry
+// points (index.ts, client.ts, server.ts, …); prefer that over one giant
 // barrel index.
 //
 // The only thing you should ever need to edit here is PACKAGES_ROOT.
@@ -18,7 +18,7 @@ const PACKAGES_ROOT = "src/packages";
 const R = PACKAGES_ROOT;
 /**
  * A package's private internals: anything nested inside a package subfolder.
- * The package's root files are its entry points and are NOT matched here,
+ * The package's root files are its entry points and are NOT matched here:
  * they stay importable from outside.
  */
 const PACKAGE_INTERNALS = `^${R}/[^/]+/[^/]+/`;
@@ -60,7 +60,7 @@ module.exports = {
     {
       name: "tests-folder-is-private",
       comment:
-        "A package's tests/ folder is reachable only from tests, nothing else may import fixtures.",
+        "A package's tests/ folder is reachable only from tests: nothing else may import fixtures.",
       severity: "error",
       from: { pathNot: `^${R}/[^/]+/tests/` }, // importer is not itself a test
       to: { path: `^${R}/[^/]+/tests/` },

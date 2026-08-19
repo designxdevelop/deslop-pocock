@@ -19,7 +19,7 @@ The only robust ways to give Codex a single promoted-only path are (a) **restruc
 ## Decision
 
 - Ship the **Claude Code plugin** now (`.claude-plugin/plugin.json` + `.claude-plugin/marketplace.json`), curated to the promoted set, as the headline v1.2 deliverable.
-- Keep **skills.sh** as the universal installer, it already serves Codex and other harnesses today, so no Codex user is left without an install path.
+- Keep **skills.sh** as the universal installer: it already serves Codex and other harnesses today, so no Codex user is left without an install path.
 - **Defer** the native Codex plugin until we decide between restructuring `skills/` to promoted-only vs. committing a generated flat copy. Revisit when Codex either supports a `skills` array / include-list or preserves symlinks on install.
 
 ## Invariants this creates
@@ -29,7 +29,7 @@ The only robust ways to give Codex a single promoted-only path are (a) **restruc
 
 ## Update, 2026-08-05
 
-`deslop-pocock` was accepted into **Claude Code's official marketplace** (configured name `claude-plugins-official`, source repo `anthropics/claude-plugins-official`) which every Claude Code install has by default. `claude plugin marketplace add designxdevelop/deslop-pocock
+`deslop-pocock` was accepted into **Claude Code's official marketplace** (configured name `claude-plugins-official`, source repo `anthropics/claude-plugins-official`), which every Claude Code install has by default. `claude plugin marketplace add designxdevelop/deslop-pocock
 claude plugin install deslop-pocock@deslop-pocock` is now the documented route, and the `marketplace add` → `install` path above is superseded. The install wording lives in [.agents/install-block.md](../install-block.md).
 
 The official listing points at this repo's git URL and reads `.claude-plugin/plugin.json` directly, so it does not depend on `.claude-plugin/marketplace.json`. That file is retained only as a fallback for installing the repo directly (an unreleased commit, or a fork).
@@ -40,4 +40,4 @@ Verified 2026-08-05, on Claude Code 2.1.222, against the live listing:
 claude plugin install deslop-pocock@deslop-pocock` resolves with no marketplace added first, and reports `deslop-pocock@claude-plugins-official`.
 - `claude plugin details deslop-pocock` then reports version 1.2.0 and loads the promoted skills.
 - The listing's `source` is `{"source": "url", "url": "https://github.com/designxdevelop/deslop-pocock.git", "sha": …}`: the **sha is pinned**, so a release reaches installed users when that pin moves, not the moment we tag. At the time of writing the pin sits two commits behind `main`, which is why it lists 22 skills rather than the 24 in `plugin.json`.
-- The in-session `/plugin install deslop-pocock` was **not** exercised, `/plugin` is unavailable in headless (`claude -p`) sessions. It runs the same resolver as the CLI, and the documented example form is `/plugin install <name>@claude-plugins-official`.
+- The in-session `/plugin install deslop-pocock` was **not** exercised: `/plugin` is unavailable in headless (`claude -p`) sessions. It runs the same resolver as the CLI, and the documented example form is `/plugin install <name>@claude-plugins-official`.

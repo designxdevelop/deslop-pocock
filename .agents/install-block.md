@@ -24,7 +24,7 @@ This fork is not on Anthropic's official marketplace. Add it as a marketplace, t
 
 </canonical-block>
 
-## Codex, and other agents, skills.sh
+## Codex, and other agents: skills.sh
 
 The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/designxdevelop/deslop-pocock) copies editable skill files into the project. Use the whole-set form on `README.md`:
 
@@ -34,7 +34,7 @@ The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/d
 npx skills@latest add designxdevelop/deslop-pocock
 ```
 
-Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take, make sure `setup-matt-pocock-skills` is one of them.**
+Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take: make sure `setup-matt-pocock-skills` is one of them.**
 
 </canonical-block>
 
@@ -56,8 +56,8 @@ npx skills@latest update <name>
 
 ## The two routes are exclusive
 
-The plugin is a managed, read-only bundle you subscribe to. skills.sh writes files you own and edit. Installing both leaves the user with every skill twice, always say "pick one".
+The plugin is a managed, read-only bundle you subscribe to. skills.sh writes files you own and edit. Installing both leaves the user with every skill twice: always say "pick one".
 
 ## Not the install story
 
-`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add designxdevelop/deslop-pocock`, then `/plugin install deslop-pocock@deslop-pocock`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork) and is **not** documented to users.
+`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add designxdevelop/deslop-pocock`, then `/plugin install deslop-pocock@deslop-pocock`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork), and is **not** documented to users.
