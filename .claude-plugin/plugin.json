@@ -1,6 +1,6 @@
 {
   "name": "deslop-pocock",
-  "version": "1.2.3",
+  "version": "1.3.1",
   "description": "Deslop mirror of Matt Pocock's agent skills: grilling, spec/ticket flows, TDD, code review, domain modelling and more. Em dashes replaced with ordinary punctuation.",
   "author": {
     "name": "Matt Pocock",
