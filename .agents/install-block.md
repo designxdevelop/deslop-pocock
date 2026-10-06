@@ -2,7 +2,7 @@
 
 One install story, one wording. `README.md`, `.changeset/*`, and every page under `docs/` must say **this** and nothing else. Change it here first, then propagate.
 
-`deslop-pocock` is a deslop fork of Matt Pocock's skills. It is not on Anthropic's official marketplace. Add this GitHub repo as a marketplace, then install the plugin. Hourly sync tracks upstream `main` and publishes a GitHub release when the upstream version changes.
+`deslop-pocock` is listed in **Claude Code's official marketplace** (configured name `claude-plugins-official`, source repo `anthropics/claude-plugins-official`), which every Claude Code install has out of the box. There is no marketplace to add first. Official Anthropic marketplaces have auto-update enabled by default ([discover-plugins](https://code.claude.com/docs/en/discover-plugins)), but the listing pins this repo to a commit `sha` that Anthropic moves by hand, so installed users only see a release once that pin moves (see ADR 0002's 2026-08-05 update). Never promise that updates arrive automatically or immediately; the block below says when they arrive and how to track the repo directly instead.
 
 ## Claude Code: the plugin
 
@@ -20,7 +20,15 @@ Or, from inside a session:
 /plugin install deslop-pocock@deslop-pocock
 ```
 
-This fork is not on Anthropic's official marketplace. Add it as a marketplace, then install. GitHub Actions republish when upstream ships.
+It's in Claude Code's official marketplace, so there's nothing to add first. Updates reach you when Anthropic's marketplace moves its pin to a new release, which can lag behind this repo by days or weeks.
+
+**Stuck on an old version?** `claude plugin list` shows what you have, and [CHANGELOG.md](../CHANGELOG.md) shows the latest release. To track this repo directly instead, switch to its own marketplace and turn on auto-update for it under `/plugin` → Marketplaces (it's off by default for marketplaces outside Anthropic's):
+
+```bash
+claude plugin uninstall deslop-pocock@claude-plugins-official
+claude plugin marketplace add designxdevelop/deslop-pocock
+claude plugin install deslop-pocock@mattpocock
+```
 
 </canonical-block>
 
@@ -60,4 +68,4 @@ The plugin is a managed, read-only bundle you subscribe to. skills.sh writes fil
 
 ## Not the install story
 
-`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add designxdevelop/deslop-pocock`, then `/plugin install deslop-pocock@deslop-pocock`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork), and is **not** documented to users.
+`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add designxdevelop/deslop-pocock`, then `/plugin install deslop-pocock@deslop-pocock`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork). Users see it in exactly one place: the "Stuck on an old version?" escape hatch in the `claude-code` block, for when the official pin lags. It is never offered as the primary route.
